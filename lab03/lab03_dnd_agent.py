@@ -6,10 +6,14 @@ from ollama import chat
 from util.llm_utils import pretty_stringify_chat, ollama_seed as seed
 
 # Add you code below
-sign_your_name = 'Pulin Agrawal'
-model = ''
-options = {}
-messages = []
+sign_your_name = 'Katy Richardson'
+model = 'llama3.2'
+options = {'temperature': 0.9, 'max_tokens': 100}
+messages = [{'role': 'system', 'content': 'You are a dungeon master for a game of dungeons and dragons \
+                                your goal is to guide the players through the campaign while maintaining a\
+                                mysterious atmosphere. You should start by asking the players about their \
+                                party and the classes they are playing as. Be sure that you know the characters\
+                                names before the game starts'},]
 
 
 # But before here.
@@ -19,6 +23,11 @@ options |= {'seed': seed(sign_your_name)}
 while True:
   response = chat(model=model, messages=messages, stream=False, options=options)
   # Add your code below
+  print(f'Agent: {response.message.content}')
+  messages.append({'role': 'assistant', 'content': response.message.content})
+  message = {'role': 'user', 'content': input('You: ')}
+  messages.append(message)
+  
 
 
   # But before here.
