@@ -24,7 +24,7 @@ lab04_params = {
     "template_file":'lab04/lab04_trader_chat.json',
     "inventory":'Mana potion, health potion, bread, eyeballs',
     "sign":'Katy Richardson',
-    "end_regex":r"(.*)TRADE COMPLETE"
+    "end_regex":r"TRADE COMPLETE(.*)"
 }
 
 if __name__ ==  '__main__':
